@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uexplugins>
+    <plugin
+        uexName="uexLocation" version="3.0.3" build="3">
+        <info>3:新增getAddress接口参数</info>
+        <build>2:修改uexLocation不能在关闭gprs 和wifi的时候使用gps 获取坐标</build>
+        <build>1:修改配置文件兼容IDE</build>
+        <build>0:定位功能插件</build>
+    </plugin>
+</uexplugins>

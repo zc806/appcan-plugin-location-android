@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <meta name="viewport"
+        content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+            <title>获取当前位置</title>
+            <script type="text/javascript">
+                var cText = 0;
+                var cJson = 1;
+                var cInt = 2;
+                //启动定位功能，返回的通知函数 的回调函数
+                function locationCallback(lat, log){
+                    document.getElementById('longitude').value = log;
+                    document.getElementById('latitude').value = lat;
+                    document.getElementById('location').innerHTML = "经度:" + log + " ,纬度:" + lat;
+                }
+            //根据经纬度获取具体地址
+            function LocationSuccess(opCode, dataType, data){
+                document.getElementById('adre').innerHTML = data;
+            }
+            window.uexOnload = function(){
+                uexLocation.onChange = locationCallback;
+                uexLocation.cbGetAddress = LocationSuccess;
+                uexWidgetOne.cbError = function(opCode, errorCode, errorInfo){
+                    alert("errorCode:" + errorCode + "\nerrorInfo:" + errorInfo);
+                }
+            }
+            //获取当前经纬度
+            function locationFun(){
+                //0最准确，1十米以内 ，2百米以内，3千米内，4三千米以内
+                var locLevel = 0;
+                //distanceFilter 更新距离，如果设置为 100m,则100m以内不回调定位
+                var distanceFilter = 10;
+                //以上两参数仅ios支持
+                uexLocation.openLocation(locLevel, distanceFilter);
+            }
+            </script>
+            </head>
+    <body>
+        <div class="conbor">
+            <div class="consj">
+                <span>1.获取当前经纬度：</span>
+                <input class="btn" type="button" value="获取当前经纬度" onclick="locationFun();">
+                    <span>当前的经纬度值为：</span>
+                    <div class="tcxx" id="location">
+                    </div>
+                    <input type="hidden" id="longitude"><input type="hidden" id="latitude">
+                        <span>2.获取当前地址</span>
+                        <input class="btn" type="button" value="获取当前地址值" onclick="uexLocation.getAddress(document.getElementById('latitude').value,document.getElementById('longitude').value,1);">
+                            <span>获取当前地址值为：</span>
+                            <div class="tcxx" id="adre"></div>
+                            <span>3.关闭定位</span>
+                        <input class = "btn" type = "button" value = "关闭" onclick ="uexLocation.closeLocation();"></div>
+        </div>
+    </body>
+</html>

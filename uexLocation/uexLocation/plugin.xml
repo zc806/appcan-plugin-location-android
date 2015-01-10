@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uexplugins>
+    <plugin
+        className="org.zywx.wbpalmstar.plugin.uexlocation.EUExLocation" uexName="uexLocation" version="3.0" build="0">
+        <method name="openLocation" />
+        <method name="getAddress" />
+        <method name="closeLocation" />
+    </plugin>
+</uexplugins>
